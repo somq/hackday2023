@@ -5,7 +5,7 @@ from transformers import pipeline
 from transformers import AutoFeatureExtractor, AutoModelForImageClassification
 
 # Load the dataset
-dataset = load_dataset("biglam/european_art", "coco")
+# dataset = load_dataset("biglam/european_art", "coco")
 # dataset = load_dataset("laion/laion-art")
 
 # Access the image and label data
@@ -17,9 +17,9 @@ dataset = load_dataset("biglam/european_art", "coco")
 # image_to_classify = "../samples/balon-dog.jpg"
 # image_to_classify = "../samples/guitare-pablo-picasso.jpg"
 # image_to_classify = "../samples/NU_003.jpg"
-image_to_classify = "../samples/ours-Pompon.jpg"
+# image_to_classify = "../samples/ours-Pompon.jpg"
 # image_to_classify = "../samples/chair-antique-3.jpeg"
-# image_to_classify = "../samples/sconce-1.jpeg"
+image_to_classify = "../samples/sconce-1.jpeg"
 # image_to_classify = "../samples/table-1.png"
 # image_to_classify = "../samples/table-2.png"
 # image_to_classify = "../samples/table-3.png"
@@ -52,9 +52,9 @@ labels_for_classification =  [
 ##
 # image-classification
 ##
-model_name = "microsoft/resnet-50"
-classifier = pipeline("image-classification", model = model_name)
-scores = classifier(image_to_classify)
+# model_name = "microsoft/resnet-50"
+# classifier = pipeline("image-classification", model = model_name)
+# scores = classifier(image_to_classify)
 # print(("res", res))
 
 
@@ -63,9 +63,9 @@ scores = classifier(image_to_classify)
 ##
 
 # Items typologies model
-# model_name = "openai/clip-vit-large-patch14-336"
+model_name = "openai/clip-vit-large-patch14-336"
 # model_name = "laion/CLIP-ViT-B-16-laion2B-s34B-b88K"
-# classifier = pipeline("zero-shot-image-classification", model = model_name)
+classifier = pipeline("zero-shot-image-classification", model = model_name)
 
 # materials model
 # KO
@@ -73,6 +73,6 @@ scores = classifier(image_to_classify)
 # model = AutoModelForImageClassification.from_pretrained("jasmine009/materials")
 # classifier = pipeline("zero-shot-image-classification", model = model)
 
-# scores = classifier(image_to_classify, 
-#                     candidate_labels = labels_for_classification)
+scores = classifier(image_to_classify, 
+                    candidate_labels = labels_for_classification)
 print(f"The highest score is {scores[0]['score']:.3f} for the label {scores[0]['label']}")
